@@ -2,6 +2,13 @@ SUBJECT = ('국어', '영어' , '수학')
 names = ['가영', '다영', '아영']
 scores = [90, 50, 70] #테스트의 편의를 위해 90점으로 설정
 
+def cal(scores):
+    total = sum(scores)
+    average = total / len(scores)
+    high = max(scores)
+    low = min(scores)
+    return total, average, high, low
+
 print(f"과목:{SUBJECT}")
 print(f"등록된 학생: {len(names)}")
 print(f"첫번째 학생: {names[0]}/{scores[0]}점")
@@ -17,10 +24,7 @@ print(names)
 print(scores)
 print(f"이제 {len(names)}명 입니다.")
 
-total = sum(scores)
-average = total / len(scores)
-high = max(scores)
-low = min(scores)
+total, average, high, low = cal(scores) # def 로 간결하게
 
 print(f"총점 : {total}")
 print(f"평균 : {average:.1f}")
@@ -58,19 +62,16 @@ out_index = scores.index(min(scores))
 out_student = names[out_index]
 low_student_name = names.pop(out_index)
 low_student_score = scores.pop(out_index)
+
 print(f"{low_student_name}학생은 최저점{low_student_score} 점이므로 탈락 입니다.")
 
 names.insert(0,'한지민')
 scores.insert(0,100)
 
 sorted_name = sorted(names)
-s_score = sorted(scores, reverse=True)
-sorted_score = s_score.reverse()
+s_score = sorted(scores, reverse=True) # score.reverse 는 값을 리턴해주지 않음
 
-total = sum(scores) # 한지민 이라는 학생이 추가되었으므로 총점, 평균, 최고점, 최저점을 다시 계산해야함
-average = total / len(scores)
-high = max(scores)
-low = min(scores)
+average = cal(scores)[1] # 평균값만 필요하므로 인덱스 1번만 가져옴 
 
 print(f"{'=' * 30}")
 print(f"{'성 적 리 포 트':^30}")
