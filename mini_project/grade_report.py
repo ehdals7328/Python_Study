@@ -39,7 +39,7 @@ spec_score = scores[spec_student]
 sorted_name = sorted(names)
 sorted_score = sorted(scores, reverse=True)
 
-#print(f"1등: {first_name} - scores[{first}]자리") 확인용 이므로 출력제외
+print(f"1등: {first_name} - scores[{first}]자리")
 print(f"다영의 점수: {spec_score}점 (name[{scores.index(spec_score)}])")
 print(f"점수 내림차순: {sorted_score}")
 print(f"이름 가나다순: {sorted_name}")
@@ -72,6 +72,9 @@ sorted_name = sorted(names)
 s_score = sorted(scores, reverse=True) # score.reverse 는 값을 리턴해주지 않음
 
 average = cal(scores)[1] # 평균값만 필요하므로 인덱스 1번만 가져옴 
+high = max(scores)
+first = scores.index(high) # 한지민 학생이 들어오고 나서도 최고점을 검사해야함
+first_name = names[first]
 
 print(f"{'=' * 30}")
 print(f"{'성 적 리 포 트':^30}")
