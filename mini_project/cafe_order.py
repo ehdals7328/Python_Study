@@ -20,9 +20,10 @@ def bill(): # 영수증 함수
     print(f"{'영 수 증':^50}")
     print(line)
     for i in range(len(number_menu)): # number_menu의 길이만큼 반복
-        order_1 = MENU[number_menu[i] - 1][1] * count[i]
+        menu_n, menu_p = MENU[number_menu[i] - 1] # 튜플 언패킹으로 메뉴 이름과 금액을 나눠담음
+        order_1 = menu_p * count[i] # 언패킹된 가격을 갯수와 곱
         total = total + order_1 # 첫 계산을 마치면 order_1 에서 계산된 값을 total에 누적
-        print(f"{MENU[number_menu[i] - 1][0]} {count[i]}개 {order_1:>30,}원") 
+        print(f"{menu_n} {count[i]}개 {order_1:>30,}원") 
     print(line_2)
     print(f"주문 금액{total:>30,}원")
     print(f"부가세(10%){total * 0.1:>30,.0f}원")
@@ -36,3 +37,5 @@ for order in range(2):
     count.append(int(input("주문하실 수량을 입력해 주세요 :")))
 
 bill()
+
+# 튜플 언패킹의 기능을 구현
