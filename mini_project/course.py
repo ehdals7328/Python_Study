@@ -1,6 +1,8 @@
 python_list = ['김민준', '이서연', '박도윤', '이서연', '최지우']
 web_list = ['이서연', '박도윤', '한지민', '한지민',]
 
+line = '=' * 32
+line_2 = '-' * 32
 #리스트를 집합으로 캐스팅
 python_set = set(python_list)
 web_set = set(web_list)
@@ -28,17 +30,17 @@ def student_check(name):
 
 def print_list():
     print(report)
-    print("=" * 32)
+    print(line)
     print(f"{'수 강 현 황':^30}")
-    print("=" * 32)
+    print(line)
     print(f"파이썬 {report['python']}명")
     print(f"파이썬만 {report['only_py']}명")
     print(f"웹개발 {report['web']}명")
     print(f"웹개발만 {report['only_web']}명")
-    print("-" * 32)
+    print(line_2)
     print(f"둘 다 수강 {report['both']}명")
     print(f"전체 인원 {report['total']}명")
-    print("=" * 32)
+    print(line)
     print(f"중복 수강률: {percent:.1f}%")
 
 name = input("수강내역을 확인할 학생 이름을 입력해 주세요. :")
