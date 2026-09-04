@@ -15,6 +15,6 @@ def check_brackets(text):
         return False
     return True
 
-print(check_brackets('(a + b)'))  # True (정상)
-print(check_brackets('((a + b)'))  # False (여는 괄호가 남음)
-print(check_brackets('a + b)'))
+print(check_brackets('(a + b)'))  
+print(check_brackets('((a + b)'))  
+print(check_brackets('a + b)')) 
