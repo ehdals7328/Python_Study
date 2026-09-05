@@ -1,11 +1,8 @@
 MENU = {'espresso':{"ingredients":{"water": 50, "coffee":18,},"cost":1.5}, 
         "latte": {"ingredients": {"water": 200, "milk": 150, "coffee":24}, "cost": 2.5},
         "cappuccino":{"ingredients":{"water":250, "milk":100,"coffee":24},"cost": 3.0}}
-
 profit = 0
-resources = {
-    "water":300, "milk": 200, "coffee":100,
-}
+resources = {"water":300, "milk": 200, "coffee":100,}
 
 def resources_report(resources, profit): # 리소스를 출력하는 함수
     print("현재 남은 재료 입니다. :")
@@ -83,6 +80,7 @@ def make_coffee(drink_name, resources): # resources 를 갱신하는 함수
             resources['milk'] = (resources['milk'] - MENU[drink_name]["ingredients"].get('milk', 0))
             resources['coffee'] = (resources['coffee'] - MENU[drink_name]["ingredients"]['coffee'])
             return resources
+
 while True:
     drink_name = select_drink() # 1. 음료를 선택 받는다
     if drink_name == False: # 1-1.다른 명령어 ex)Report or 오타 , 처음으로
