@@ -97,9 +97,9 @@ class Library:
     def show_all(self):
         state = None
         print("=" * 56)
-        print(f"{self.name:^25}")
+        print(f"{self.name:^45}")
         print("=" * 56)
-        print(f"{'id'} {'정보'} {'상태'}")
+        print(f"{'id':<} {'정보':^25} {'상태':>}")
         print("-" * 56)
         if not self.items:
             print("현재 도서가 없습니다.")
@@ -108,17 +108,20 @@ class Library:
             if not line.borrower:
                 state = '대출가능'
             else:
-                state = f'대출중 대여자:{line.borrower}님'
-            print(f"{line.info()}, {state}")
+                state = f'대출중({line.borrower})'
+            print(f"{line.item_id:<} {line.info()} {state:>15}")
         print("=" * 56)
 
     def report(self):
-        result = Counter(type(obj).__name__ for obj in self.items)
+        r = dict(Counter(type(obj).__name__ for obj in self.items)) # 딕셔너리 형태 유지
+        result = dict(sorted(r.items(), key=lambda x: x[1], reverse=True)) # x[1]은 x의 value
         print("-" * 56)
         print(f"{'종류별 등록 현황'}")
         print("-" * 56)
-        for line in result:
-            print(f"{line:<} {result[line]}개")
+
+        for cat, values in result.items(): # 언패킹
+            print(f"{cat:<} {values}개")
+
         print("-" * 56)
         print(f"대출중 {len([i for i in self.items if i.is_loaned])}개")
         print(f"전체등록 {LibraryItem.total_items}개")
@@ -127,12 +130,22 @@ class Library:
         
    
 book1 = Book("책1", "A000", "김민수", '100쪽')
+book3 = Book("책3", "a006", "오민수", '122쪽')
 dvd1 = DVD("영화1", "A001", "놀란", '169')
 magazine1 = Magazine("잡지1", "A002", '3')
+book2 = Book("책2", "A003", "이민수", '120쪽')
+dvd2 = DVD("영화2", "A004", "마이클", '120')
+magazine2 = Magazine("잡지2", "A005", '5')
 lib1 = Library("한빛도서관")
 lib1.add(book1)
+lib1.add(book2)
+lib1.add(book3)
+
 lib1.add(dvd1)
+#lib1.add(dvd2)
+
 lib1.add(magazine1)
+lib1.add(magazine2)
 
 while True:
     print("1.전체목록 2.통계 3.대출 4.반납 0.종료")
@@ -144,21 +157,21 @@ while True:
         lib1.report()
 
     elif select == 3:
-        loan_num = input("대출하실 책의 id를 입력해 주세요.")
-        name = input("대여자 이름")
+        loan_num = input("대출하실 책의 id를 입력해 주세요. ").upper()
         object = lib1.find(loan_num)
+        name = input("대여자 이름 ")
         object.checkout(name)
 
     elif select == 4:
-        loan_num = input("반납하실 책의 id를 입력해 주세요.")
+        loan_num = input("반납하실 책의 id를 입력해 주세요. ").upper()
         object2 = lib1.find(loan_num)
         object2.return_item()
 
     elif select == 0:
-        print("종료합니다.")
+        print("종료합니다. ")
         exit()
 
     else:
-        print("없는 번호 입니다.")
+        print("없는 번호 입니다. ")
 
     
