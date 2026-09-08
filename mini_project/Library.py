@@ -53,7 +53,7 @@ class Book(LibraryItem):
         return 14
 
     def info(self):
-        return f"[도서]{self.title} / {self.author} / {self.pages}"
+        return f"[도서]{self.title} / {self.author} / {self.pages}쪽"
 
 class DVD(LibraryItem):
     def __init__(self, title, item_id, director, minutes):
@@ -129,13 +129,13 @@ class Library:
         
         
    
-book1 = Book("책1", "A000", "김민수", '100쪽')
-book3 = Book("책3", "a006", "오민수", '122쪽')
-dvd1 = DVD("영화1", "A001", "놀란", '169')
-magazine1 = Magazine("잡지1", "A002", '3')
-book2 = Book("책2", "A003", "이민수", '120쪽')
-dvd2 = DVD("영화2", "A004", "마이클", '120')
-magazine2 = Magazine("잡지2", "A005", '5')
+book1 = Book("책1", "A000", "김민수", 100)
+book3 = Book("책3", "a006", "오민수", 122)
+dvd1 = DVD("영화1", "A001", "놀란", 169)
+magazine1 = Magazine("잡지1", "A002", 3)
+book2 = Book("책2", "A003", "이민수", 120)
+dvd2 = DVD("영화2", "A004", "마이클", 120)
+magazine2 = Magazine("잡지2", "A005", 5)
 lib1 = Library("한빛도서관")
 lib1.add(book1)
 lib1.add(book2)
