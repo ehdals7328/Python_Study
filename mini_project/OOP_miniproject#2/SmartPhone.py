@@ -9,27 +9,27 @@ class SmartPhone():
 
     def inputAddrData(self):
         print("# 연락처 등록(회사)")        
-        input_name = input("이름을 입력하세요: ")
-        input_phone = input("전화번호를 입력하세요: ")
-        input_email = input("이메일을 입력하세요: ")
-        input_address = input("주소를 입력하세요: ")
-        input_birth = input("생일을 입력하세요: ")
-        input_co_name = input("회사명을 입력하세요: ")
-        input_part = input("부서 이름을 입력하세요: ")
-        input_rank = input("직급을 입력하세요: ")
+        input_name = input("이름을 입력하세요: ").strip()
+        input_phone = self.clean_num()
+        input_email = input("이메일을 입력하세요: ").strip()
+        input_address = input("주소를 입력하세요: ").strip()
+        input_birth = input("생일을 입력하세요: ").strip()
+        input_co_name = input("회사명을 입력하세요: ").strip()
+        input_part = input("부서 이름을 입력하세요: ").strip()
+        input_rank = input("직급을 입력하세요: ").strip()
         person = CompanyAddr(input_name, input_phone, input_email, input_address, input_birth, '회사', input_co_name, input_part, input_rank)
         return person
 
     def inputAddrData_2(self):
-        print("# 연락처 등록(거래처)")        
-        input_name = input("이름을 입력하세요: ")
-        input_phone = input("전화번호를 입력하세요: ")
-        input_email = input("이메일을 입력하세요: ")
-        input_address = input("주소를 입력하세요: ")
-        input_birth = input("생일을 입력하세요: ")
-        input_cu_name = input("거래처명을 입력하세요: ")
-        input_item = input("품목 이름을 입력하세요: ")
-        input_rank = input("직급을 입력하세요: ")
+        print("# 연락처 등록(거래처)").strip()
+        input_name = input("이름을 입력하세요: ").strip()
+        input_phone = self.clean_num()
+        input_email = input("이메일을 입력하세요: ").strip()
+        input_address = input("주소를 입력하세요: ").strip()
+        input_birth = input("생일을 입력하세요: ").strip()
+        input_cu_name = input("거래처명을 입력하세요: ").strip()
+        input_item = input("품목 이름을 입력하세요: ").strip()
+        input_rank = input("직급을 입력하세요: ").strip()
         person = CustomerAddr(input_name, input_phone, input_email, input_address, input_birth, '거래처', input_cu_name, input_item, input_rank)
         return person
 
@@ -84,6 +84,18 @@ class SmartPhone():
     def sort_list(self):
         self.sorted_contact = sorted(self.contact, key=lambda x: x.name)
         return self.sorted_contact
+
+    def clean_num(self): #추가 한 기능
+        while True:
+            input_number = input("전화번호를 입력해 주세요 (- 기호 없이 입력 하세요)")
+            if len(input_number) == 11:
+                zero = input_number[:3]
+                middle = input_number[3:7]
+                last = input_number[7:]
+                result = f"{zero}-{middle}-{last}"
+                return result
+            else:
+                print("다시 입력해 주세요. ")
 
 adress2 = Addr('하철수', '010-1111-2222', 'cjftn1111@gmail.com', '서울', '가족', '1101')
 adress3 = Addr('김영희', '010-3333-4444', 'dudgml3333@gmail.com', '부산', '가족', '0101')
