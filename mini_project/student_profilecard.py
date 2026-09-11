@@ -35,6 +35,6 @@ def check_profile():
 
 check = str(input("다음 항목이 있는지 검사합니다. : "))
 text = check in student # 검사를 도와주는 변수
+profile_print()
 check_profile()
-
 profile_print()
