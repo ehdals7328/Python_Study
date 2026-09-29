@@ -57,7 +57,7 @@ for i in range(epochs):
     error_hidden = d_output @ weights_hidden_output.T # hidden layer까지의 err함수 미분 꼴, 차원을 맞추기 위해 전치 
     d_hidden = error_hidden * sigmoid_derivative(hidden_output) # 은닉층 의 gradient (은닉층 노드의 오차)
 
-    # 가중치,bias 업데이트
+    # 가중치, bias 업데이트
     weights_hidden_output += (hidden_output.T @ d_output) * eta # hidden_output은 3번째 layer의 input이며,  d_output은 E'(w) * derivate_sigmoid(o) 꼴이므로 일반화식 과 동일함. (델타 w 를 구하는)
 
     bias_output += np.sum(d_output, axis=0, keepdims=True) * eta # 11개의 데이터를 전부 합쳐야함 (11, 1) -> (1, 1) 편향은 업데이트 공식이 E'(w) * derivate_sigmoid(o) 까지라 d_output 자체가 기울기가됨
